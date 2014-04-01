@@ -8,7 +8,7 @@
     <artifactId>domain</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <name>DDD training Project - nov 2013</name>
+    <name>DDD training Project - april 2014</name>
 
     <properties>
     	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
