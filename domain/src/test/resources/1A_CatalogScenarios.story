@@ -17,7 +17,7 @@ Given the GE family without a CG (Classic Guitars) category
 When I enter a new CG category into the GE family
 Then the CG category exist in the GE family 
 
-Given the GE family without a GA (Guitar Aplifiers) category 
+Given the GE family without a GA (Guitar Amplifiers) category
 When I enter a new GA category into the GE family
 Then the GA category exist in the GE family 
 

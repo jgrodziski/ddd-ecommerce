@@ -1,6 +1,6 @@
 Given the EG1 product exist
 And the JA vendor exist
-When I enter a new EG1-JA offer with the EG1 product, the JA vendor and the 5 EUR price
+When I enter a new EG1-JA offer (10,5,EUR) the EG1 product, the JA vendor
 Then the EG1-JA product exist in offer list with the EG1 product, the JA vendor and the 5 EUR price
 
 Given the CG1 product exist
