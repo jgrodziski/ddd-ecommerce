@@ -6,15 +6,15 @@ import java.util.List;
 /**
  *
  */
-public class SlotStories extends Stories {
+public class EcommerceStories extends Stories {
 
-    public SlotStories() {
+    public EcommerceStories() {
         super();
     }
 
     protected List<Object> mySteps() {
         List<Object> steps = new ArrayList(1);
-        steps.add(new SlotSteps());
+        steps.add(new CatalogSteps());
         return steps;
     }
 }
