@@ -14,7 +14,7 @@ public class EcommerceStories extends Stories {
 
     protected List<Object> mySteps() {
         List<Object> steps = new ArrayList(1);
-        steps.add(new CatalogSteps());
+        steps.add(new CatalogScenarioSteps());
         return steps;
     }
 }
