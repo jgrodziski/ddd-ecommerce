@@ -1,5 +1,15 @@
 package ddd.ecommerce.domain;
 
+import ddd.ecommerce.domain.catalog.Catalog;
+import ddd.ecommerce.domain.catalog.OfferId;
+import ddd.ecommerce.domain.catalog.OfferRepository;
+import ddd.ecommerce.domain.common.Quantity;
+import ddd.ecommerce.domain.customer.Basket;
+import ddd.ecommerce.domain.customer.BasketItem;
+import ddd.ecommerce.domain.customer.Buyer;
+import ddd.ecommerce.domain.customer.Customer;
+import ddd.ecommerce.domain.order.*;
+import junit.framework.Assert;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Pending;
 import org.jbehave.core.annotations.Then;
@@ -9,6 +19,11 @@ import org.jbehave.core.annotations.When;
  * Created by Training on 4/2/2014.
  */
 public class CommandeSteps {
+    Catalog catalog;
+    private CatalogRepository catalogRepository = new CatalogRepositoryMock();
+    private OrderRepository orderRepository = new OrderRepositoryMock();
+    private Order order;
+    private Customer customer;
 
     @Given("service de commande initialise avec un catalogue et un service client")
     @Pending
@@ -27,12 +42,19 @@ public class CommandeSteps {
     @Pending
     public void whenLeClientSoumetLePanier() {
         // PENDING
+        customer.submitBasket();
     }
 
     @Then("la commande est creee dans l'etat \"SUBMITTED\"")
     @Pending
     public void thenLaCommandeEstCreeeDansLetatSUBMITTED() {
         // PENDING
+        order = OrderFactory.createOrder(customer);
+        orderRepository.store(order);
+
+        Assert.assertEquals(OrderStatus.SUBMITTED, order.getOrderStatus());
+        Assert.assertNotNull(orderRepository.findOrderById(order.getOrderId()));
+        Assert.assertEquals(OrderStatus.SUBMITTED, orderRepository.findOrderById(order.getOrderId()).getOrderStatus());
     }
 
     @Then("le recapitulatif de la commande est affichee au client")
@@ -93,6 +115,12 @@ public class CommandeSteps {
     @Pending
     public void thenLaCommandeEstDansLetatPAID() {
         // PENDING
+        order.changeStatus(OrderStatus.PAID);
+        orderRepository.store(order);
+
+        Assert.assertEquals(OrderStatus.PAID, order.getOrderStatus());
+        Assert.assertNotNull(orderRepository.findOrderById(order.getOrderId()));
+        Assert.assertEquals(OrderStatus.PAID, orderRepository.findOrderById(order.getOrderId()).getOrderStatus());
     }
 
     @Then("la facture est emise")
