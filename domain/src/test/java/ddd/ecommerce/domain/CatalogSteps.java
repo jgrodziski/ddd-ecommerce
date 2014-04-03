@@ -143,7 +143,7 @@ public class CatalogSteps {
     public void whenIEnterANewOffer(String offerId, String productId, String stock, String price, String currency, String vendorId) {
         Vendor vendor = vendorRepository.get(new VendorId(vendorId));
         Product product = catalog.get(new ProductId(productId));
-        Offer offer = new Offer(new OfferId(offerId), product.getDescription(), new Quantity(Integer.valueOf(stock)), new Amount(new BigDecimal(price), Currency.getInstance(currency)), vendor.getVendorId());
+        Offer offer = new Offer(new OfferId(offerId), product.getDescription(), Quantity.valueOf(Integer.valueOf(stock)), new Amount(new BigDecimal(price), Currency.getInstance(currency)), vendor.getVendorId());
         offerRepository.store(offer);
     }
 

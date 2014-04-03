@@ -11,7 +11,7 @@ public class Quantity {
         if (value < 0) throw new RuntimeException("A quantity is always positive");
         this.value = value;
     }
-    public Quantity valueOf(Integer value){
+    public static Quantity valueOf(Integer value){
         if(value == 1) return ONE;
         return new Quantity(value);
     }

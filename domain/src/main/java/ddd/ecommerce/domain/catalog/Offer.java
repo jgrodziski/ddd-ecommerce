@@ -36,4 +36,8 @@ public class Offer {
     public Amount getSellingPrice() {
         return sellingPrice;
     }
+
+    public void decrementStock(Quantity quantityToRemove) {
+        stock = stock.minus(quantityToRemove);
+    }
 }
