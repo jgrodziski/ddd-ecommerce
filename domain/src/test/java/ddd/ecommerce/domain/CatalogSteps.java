@@ -2,8 +2,10 @@ package ddd.ecommerce.domain;
 
 
 import ddd.ecommerce.domain.catalog.Catalog;
+import ddd.ecommerce.domain.catalog.Category;
+import ddd.ecommerce.domain.catalog.Family;
+import ddd.ecommerce.domain.catalog.Universe;
 import org.jbehave.core.annotations.Given;
-import org.jbehave.core.annotations.Pending;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 
@@ -12,6 +14,7 @@ import static org.junit.Assert.assertNotNull;
 
 public class CatalogSteps {
     Catalog catalog;
+    private CatalogRepository catalogRepository = new CatalogRepositoryMock();
 
     @When("a manager creates a new catalog called \"$catalog\"")
     public void whenAManagerCreatesANewCatalog(String catalogName) {
@@ -19,58 +22,60 @@ public class CatalogSteps {
     }
 
     @Then("the catalog \"Seine\" is available and online")
-    @Pending
     public void thenTheCatalogSeineIsAvailableAndOnline() {
 
     }
 
-    @Given("a catalog without a MI (Music Instruments) universe")
-    @Pending
+    @Given("a catalog without a $universeId universe")
     public void givenACatalogWithoutAMIMusicInstrumentsUniverse() {
         // PENDING
     }
 
-    @When("I enter a new MI universe")
-    @Pending
-    public void whenIEnterANewMIUniverse() {
-        //catalog.add(new Universe())
+    @When("I enter a new $code ($label) universe")
+    public void whenIEnterANewMIUniverse(String code, String label) {
+        catalog.add(new Universe(code, label));
+        catalogRepository.store(catalog);
     }
 
-    @Then("the MI universe exist in the catalog")
-    @Pending
-    public void thenTheMIUniverseExistInTheCatalog() {
+    @Then("the $universeId universe exist in the catalog")
+    public void thenTheMIUniverseExistInTheCatalog(String universeId) {
+        assertNotNull(catalog.getUniverse(universeId));
+    }
+
+    @Given("the $universeId universe without a $familyId family")
+    public void givenTheMIUniverseWithoutAGEGuitarEquipmentFamily(String universeId, String familyId) {
         // PENDING
     }
 
-    @Given("the MI universe without a GE (Guitar & Equipment) family")
-    @Pending
-    public void givenTheMIUniverseWithoutAGEGuitarEquipmentFamily() {
-        // PENDING
+    @When("I enter a new $code ($label) family into the $universeId universe")
+    public void whenIEnterANewGEFamilyIntoTheMIUniverse(String code, String label, String universeId) {
+        Universe universe = catalog.getUniverse(universeId);
+        universe.add(new Family(code, label, universe));
+        catalogRepository.store(catalog);
     }
 
-    @When("I enter a new GE family into the MI universe")
-    @Pending
-    public void whenIEnterANewGEFamilyIntoTheMIUniverse() {
-        // PENDING
-    }
-
-    @Then("the GE family exist in the MI universe")
-    @Pending
+    @Then("the $familyId family exist in the $universeId universe")
     public void thenTheGEFamilyExistInTheMIUniverse() {
-        // PENDING
+
     }
 
-    @Given("the GE family without a EG (Electric Guitars) category")
-    @Pending
+    @Given("the $familyId family without a $categoryId category")
     public void givenTheGEFamilyWithoutAEGElectricGuitarsCategory() {
         // PENDING
     }
 
-    @When("I enter a new EG category into the GE family")
-    @Pending
-    public void whenIEnterANewEGCategoryIntoTheGEFamily() {
-        // PENDING
+    @When("I enter a new $code ($label) category into the $familyId family and $universeId universe")
+    public void whenIEnterANewEGCategoryIntoTheGEFamily(String code, String label, String familyId, String universeId) {
+        Family family = catalog.getUniverse(universeId).getFamily(familyId);
+        family.add(new Category(code, label, family));
     }
+
+    @Then("the $categoryId category exist in the $familyId family and $universeId universe")
+    public void thenTheEGCategoryExistInTheGEFamily(String categoryId, String familyId, String universeId) {
+        assertNotNull(catalog.getUniverse(universeId).getFamily(familyId).getCategory(categoryId));
+    }
+
+
 
 
 }

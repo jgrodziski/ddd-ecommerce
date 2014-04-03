@@ -1,5 +1,6 @@
 package ddd.ecommerce.domain.catalog;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -11,6 +12,7 @@ public class Catalog {
 
     public Catalog(String name) {
         this.name = name;
+        universes = new HashMap<String, Universe>();
     }
 
     public String getName() {
