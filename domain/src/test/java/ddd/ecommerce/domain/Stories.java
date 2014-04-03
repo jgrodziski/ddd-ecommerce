@@ -10,8 +10,12 @@ import org.jbehave.core.io.StoryFinder;
 import org.jbehave.core.junit.JUnitStories;
 import org.jbehave.core.model.ExamplesTableFactory;
 import org.jbehave.core.parsers.RegexStoryParser;
-import org.jbehave.core.reporters.*;
-import org.jbehave.core.steps.*;
+import org.jbehave.core.reporters.FilePrintStreamFactory;
+import org.jbehave.core.reporters.Format;
+import org.jbehave.core.reporters.StoryReporterBuilder;
+import org.jbehave.core.steps.InstanceStepsFactory;
+import org.jbehave.core.steps.MarkUnmatchedStepsAsPending;
+import org.jbehave.core.steps.ParameterConverters;
 
 import java.net.URL;
 import java.util.List;

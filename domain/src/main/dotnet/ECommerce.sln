@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECommerce.Core", "ECommerce.Core\ECommerce.Core.csproj", "{582B0900-8C9D-41FB-B3F0-7E0E45136B5A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECommerce.Specs", "Specs\ECommerce.Specs.csproj", "{28D8B647-AF54-4992-A89B-D57040427419}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{BF70333E-0846-40B2-822C-1D92CD06836F}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+		.nuget\packages.config = .nuget\packages.config
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scenarios", "Scenarios", "{EBBA609C-7AAB-43CF-8EC0-198E49F2A883}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\test\resources\1_creation_catalogue.story = ..\..\test\resources\1_creation_catalogue.story
+		..\..\test\resources\1A_CatalogScenarios.story = ..\..\test\resources\1A_CatalogScenarios.story
+		..\..\test\resources\1B_ProductScenarios.story = ..\..\test\resources\1B_ProductScenarios.story
+		..\..\test\resources\1C_VendorsScenarios.story = ..\..\test\resources\1C_VendorsScenarios.story
+		..\..\test\resources\1D_OffersScenarios.story = ..\..\test\resources\1D_OffersScenarios.story
+		..\..\test\resources\2_ajout_panier.story = ..\..\test\resources\2_ajout_panier.story
+		..\..\test\resources\2B_creation_compte_client.story = ..\..\test\resources\2B_creation_compte_client.story
+		..\..\test\resources\4_soumission_commande.story = ..\..\test\resources\4_soumission_commande.story
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{582B0900-8C9D-41FB-B3F0-7E0E45136B5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{582B0900-8C9D-41FB-B3F0-7E0E45136B5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{582B0900-8C9D-41FB-B3F0-7E0E45136B5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{582B0900-8C9D-41FB-B3F0-7E0E45136B5A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28D8B647-AF54-4992-A89B-D57040427419}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28D8B647-AF54-4992-A89B-D57040427419}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28D8B647-AF54-4992-A89B-D57040427419}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28D8B647-AF54-4992-A89B-D57040427419}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
