@@ -15,8 +15,7 @@ public class OfferRepositoryMock implements OfferRepository {
         return offers.get(offerId);
     }
 
-    public Offer store(Offer offer){
+    public void store(Offer offer){
         offers.put(offer.getId(), offer);
-        return offer;
     }
 }

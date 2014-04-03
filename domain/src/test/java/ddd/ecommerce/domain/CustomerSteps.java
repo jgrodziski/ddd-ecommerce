@@ -12,17 +12,16 @@ import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 
-import java.math.BigDecimal;
-import java.util.Currency;
-
+import static junit.framework.TestCase.assertTrue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 public class CustomerSteps {
-    OfferRepository offerRepository;
+    OfferRepository offerRepository = new OfferRepositoryMock();
     Offer offer;
     Buyer buyer;
+    Basket basket;
 
     @Given("l'offre $offerId")
     public void givenLoffreEG1JA(String offerId) {
@@ -40,13 +39,22 @@ public class CustomerSteps {
         assertNotNull(buyer.getId());
     }
 
-    @Then("le panier contient l'offre $offerId avec un solde de $value $currency")
-    public void thenLePanierContientLoffreEG1JAAvecUnSoldeDe5EUR(String offerId, String value, String currency) {
-        Basket basket = buyer.getCurrentBasket();
+    @Then("le panier contient l'offre $offerId")
+    public void thenLePanierContientLoffreEG1JAAvecUnSoldeDe5EUR(String offerId) {
+        basket = buyer.getCurrentBasket();
         BasketItem item = basket.getItems().get(0);
-        Amount balance = basket.calculateBalance(offerRepository);
+        Amount balance = basket.calculateTotal(offerRepository);
         assertEquals(item.getOfferId(), new OfferId(offerId));
-        assertEquals(balance, new Amount(new BigDecimal(value), Currency.getInstance(currency)));
+    }
+
+    @Then("le panier a des frais de port de $amount $currency")
+    public void thenLePanierADesFraisDePortOffert(String amount, String currency) {
+        assertTrue(basket.getShippingCost().equals(new Amount(amount, "USD")));
+    }
+
+    @Then("le panier a un solde de $solde $currency")
+    public void thenLePanierAUnSoldeDe49999USD(String solde, String currency) {
+        //assertEquals(balance, new Amount(new BigDecimal(value), Currency.getInstance(currency)));
     }
 
 }

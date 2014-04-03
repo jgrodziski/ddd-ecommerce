@@ -10,10 +10,19 @@ public class Amount {
     private BigDecimal value;
     private Currency currency;
     public static final Amount ZERO_EUR = new Amount(BigDecimal.ZERO, Currency.getInstance("EUR"));
+    public static final Amount ZERO_USD = new Amount(BigDecimal.ZERO, Currency.getInstance("USD"));
 
     public Amount(BigDecimal value, Currency currency) {
         this.value = value;
         this.currency = currency;
+    }
+
+    public Amount(int i, String currency) {
+        this(new BigDecimal(i), Currency.getInstance(currency));
+    }
+
+    public Amount(String i, String currency) {
+        this(new BigDecimal(i), Currency.getInstance(currency));
     }
 
     public BigDecimal getValue() {

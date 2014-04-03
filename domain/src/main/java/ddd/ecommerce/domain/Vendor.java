@@ -1,18 +1,18 @@
 package ddd.ecommerce.domain;
 
-/**
- * Created by jeremiegrodziski on 03/04/14.
- */
+import ddd.ecommerce.domain.catalog.VendorId;
+
+
 public class Vendor {
-    private String vendorId;
+    private VendorId vendorId;
     private String vendorName;
 
-    public Vendor(String vendorId, String vendorName) {
+    public Vendor(VendorId vendorId, String vendorName) {
         this.vendorId = vendorId;
         this.vendorName = vendorName;
     }
 
-    public String getVendorId() {
+    public VendorId getVendorId() {
         return vendorId;
     }
 

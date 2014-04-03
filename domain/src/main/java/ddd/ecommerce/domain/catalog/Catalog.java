@@ -34,4 +34,8 @@ public class Catalog {
     public void add(Product product) {
         products.put(product.getId(),product);
     }
+
+    public Product get(ProductId productId){
+        return products.get(productId);
+    }
 }

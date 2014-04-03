@@ -1,14 +1,15 @@
 package ddd.ecommerce.domain;
 
 
-import ddd.ecommerce.domain.catalog.Catalog;
-import ddd.ecommerce.domain.catalog.Category;
-import ddd.ecommerce.domain.catalog.Family;
-import ddd.ecommerce.domain.catalog.Universe;
+import ddd.ecommerce.domain.catalog.*;
+import ddd.ecommerce.domain.common.Amount;
+import ddd.ecommerce.domain.common.Quantity;
 import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 
+import java.math.BigDecimal;
+import java.util.Currency;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,17 +20,18 @@ public class CatalogSteps {
     Catalog catalog;
     private CatalogRepository catalogRepository = new CatalogRepositoryMock();
     private VendorRepository vendorRepository= new VendorRepository() {
-        Map<String, Vendor> vendors = new HashMap<String, Vendor>();
+        Map<VendorId, Vendor> vendors = new HashMap<VendorId, Vendor>();
         @Override
         public void store(Vendor vendor) {
             vendors.put(vendor.getVendorId(), vendor);
         }
 
         @Override
-        public Vendor get(String vendorId) {
+        public Vendor get(VendorId vendorId) {
             return vendors.get(vendorId);
         }
     };
+    OfferRepository offerRepository = new OfferRepositoryMock();
 
     @When("a manager creates a new catalog called \"$catalog\"")
     public void whenAManagerCreatesANewCatalog(String catalogName) {
@@ -93,111 +95,63 @@ public class CatalogSteps {
         assertNotNull(catalog.getUniverse(universeId).getFamily(familyId).getCategory(categoryId));
     }
 
-    @Given("the EG category without a EG1 product")
-    public void givenTheEGCategoryWithoutAEG1Product() {
+    @Given("the $categoryId category without a $productId product")
+    public void givenTheEGCategoryWithoutAEG1Product(String categoryId, String productId) {
         // PENDING
     }
 
-    @When("I enter a new $productId ($description, $brand, $asin, $weight, $dimension) product into the $universeId-$familyId-$categoryId category")
-    public void whenIEnterANewEG1ProductIntoTheEGCategory(String productId, String description, String brand, String asin, String weight, String dimension, String universeId, String familyId, String categoryId) {
+    @When("I enter a new $productId (\"$description\", \"$brand\", $asin, \"$weight\", \"$dimension\") product into the $universeId-$familyId-$categoryId category")
+    public void whenIEnterANewProductIntoCategory(String productId, String description, String brand, String asin, String weight, String dimension, String universeId, String familyId, String categoryId) {
         Category category = catalog.getUniverse(universeId).getFamily(familyId).getCategory(categoryId);
         Product product = new Product(new ProductId(productId), description, brand, asin, weight, dimension, category);
         catalog.add(product);
         catalogRepository.store(catalog);
     }
 
-    @Then("the EG1 product exist in the EG category")
-    public void thenTheEG1ProductExistInTheEGCategory() {
+    @Then("the $productId product exist in the $categoryId category")
+    public void thenTheEG1ProductExistInTheEGCategory(String productId) {
         // PENDING
     }
 
-    @Given("a vendor list without a JA vendor")
+    @Given("a vendor list without a $vendorId vendor")
     public void givenAVendorListWithoutAJAVendor() {
         // PENDING
     }
 
     @When("I enter a new $vendorId ($vendorName) vendor")
     public void whenIEnterANewJAJaneVendor(String vendorId, String vendorName) {
-        Vendor vendor = new Vendor(vendorId, vendorName);
+        Vendor vendor = new Vendor(new VendorId(vendorId), vendorName);
         vendorRepository.store(vendor);
     }
 
-    @Then("the JA vendor exist in the vendor list")
-    public void thenTheJAVendorExistInTheVendorList() {
-        // PENDING
+    @Then("the $vendorId vendor exist in the vendor list")
+    public void thenTheJAVendorExistInTheVendorList(String vendorId) {
+
     }
 
-    @Given("the EG1 product exist")
-    @Pending
-    public void givenTheEG1ProductExist() {
-        // PENDING
+    @Given("the $productId product exist")
+    public void givenTheEG1ProductExist(String productId) {
+        catalog.get(new ProductId(productId));
     }
 
-    @Given("the JA vendor exist")
-    @Pending
-    public void givenTheJAVendorExist() {
-        // PENDING
+    @Given("the $vendorId vendor exist")
+    public void givenTheJAVendorExist(String vendorId) {
+
     }
 
-    @When("I enter a new EG1-JA offer the EG1 product (10,5,EUR), the JA vendor")
-    @Pending
-    public void whenIEnterANewEG1JAOfferTheEG1Product105EURTheJAVendor() {
-        // PENDING
+    @When("I enter a new $offerId offer with the $productId product ($stock,$price,$currency), the $vendorId vendor")
+    public void whenIEnterANewOffer(String offerId, String productId, String stock, String price, String currency, String vendorId) {
+        Vendor vendor = vendorRepository.get(new VendorId(vendorId));
+        Product product = catalog.get(new ProductId(productId));
+        Offer offer = new Offer(new OfferId(offerId), product.getDescription(), new Quantity(Integer.valueOf(stock)), new Amount(new BigDecimal(price), Currency.getInstance(currency)), vendor.getVendorId());
+        offerRepository.store(offer);
     }
 
-    @Then("the EG1-JA product exist in offer list with the EG1 product (10,5,EUR), the JA vendor")
-    @Pending
+    @Then("the $offerId offer exist in offer list")
     public void thenTheEG1JAProductExistInOfferListWithTheEG1Product105EURTheJAVendor() {
         // PENDING
     }
 
-    @Given("the CG1 product exist")
-    @Pending
-    public void givenTheCG1ProductExist() {
-        // PENDING
-    }
-
-    @Given("the JA vendor exist")
-    @Pending
-    public void givenTheJAVendorExist() {
-        // PENDING
-    }
-
-    @When("I enter a new CG1-JA offer with the CG1 product (15,10,EUR), the JA vendor")
-    @Pending
-    public void whenIEnterANewCG1JAOfferWithTheCG1Product1510EURTheJAVendor() {
-        // PENDING
-    }
-
-    @Then("the CG1-JA product exist in offer list with the CG1 product (15,10,EUR), the JA vendor")
-    @Pending
-    public void thenTheCG1JAProductExistInOfferListWithTheCG1Product1510EURTheJAVendor() {
-        // PENDING
-    }
-
-    @Given("the GA1 product exist")
-    @Pending
-    public void givenTheGA1ProductExist() {
-        // PENDING
-    }
-
-    @Given("the JA vendor exist")
-    @Pending
-    public void givenTheJAVendorExist() {
-        // PENDING
-    }
-
-    @When("I enter a new GA1-JA offer with the GA1 product (20,15,EUR), the JA vendor")
-    @Pending
-    public void whenIEnterANewGA1JAOfferWithTheGA1Product2015EURTheJAVendor() {
-        // PENDING
-    }
-
-    @Then("the GA1-JA product exist in offer list with the GA1 product (20,15,EUR), the JA vendor")
-    @Pending
-    public void thenTheGA1JAProductExistInOfferListWithTheGA1Product2015EURTheJAVendor() {
-        // PENDING
-    }
 
 
 }

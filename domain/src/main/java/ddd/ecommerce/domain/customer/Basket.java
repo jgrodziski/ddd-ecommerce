@@ -8,6 +8,7 @@ import java.util.List;
 
 public class Basket {
     private List<BasketItem> items;
+    private Amount shippingCost;
 
     public Basket() {
         items = new ArrayList<BasketItem>(2);
@@ -21,11 +22,19 @@ public class Basket {
         return items;
     }
 
-    public Amount calculateBalance(OfferRepository offerRepository){
-        Amount balance = Amount.ZERO_EUR;
+    public Amount calculateTotal(OfferRepository offerRepository){
+        Amount balance = Amount.ZERO_USD;
         for (BasketItem item : items) {
-            balance.add(offerRepository.getOffer(item.getOfferId()).getSellingPrice());
+            balance = balance.add(offerRepository.getOffer(item.getOfferId()).getSellingPrice());
         }
-        return balance;
+        //process the delivery cost
+        shippingCost = new ShippingCostCalculator(null, null, balance).calculate();
+        return balance.add(shippingCost);
     }
+
+    public Amount getShippingCost() {
+        return shippingCost;
+    }
+
+
 }

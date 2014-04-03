@@ -3,7 +3,7 @@ When I enter a new EG1 ("Fender Standard Stratocaster, Maple Fretboard - Arctic 
 Then the EG1 product exist in the EG category
 
 Given the CG category without a CG1 product
-When I enter a new CG1 ("Schecter Stiletto Custom-4 Electric Bass (4 String, Natural Satin)", "Schecter", B0002CZVO6, "35.7 pounds", " 53 x 16 x 4 inches") product into the MI-GE-CG category
+When I enter a new CG1 ("Schecter Stiletto Custom-4 Electric Bass (4 String, Natural Satin)", "Schecter", B0002CZVO6, "35.7 pounds", "53 x 16 x 4 inches") product into the MI-GE-CG category
 Then the CG1 product exist in the CG category
 
 Given the GA category without a GA1 product
