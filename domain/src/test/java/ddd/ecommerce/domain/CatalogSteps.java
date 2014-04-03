@@ -9,12 +9,27 @@ import org.jbehave.core.annotations.Given;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertNotNull;
 
 public class CatalogSteps {
     Catalog catalog;
     private CatalogRepository catalogRepository = new CatalogRepositoryMock();
+    private VendorRepository vendorRepository= new VendorRepository() {
+        Map<String, Vendor> vendors = new HashMap<String, Vendor>();
+        @Override
+        public void store(Vendor vendor) {
+            vendors.put(vendor.getVendorId(), vendor);
+        }
+
+        @Override
+        public Vendor get(String vendorId) {
+            return vendors.get(vendorId);
+        }
+    };
 
     @When("a manager creates a new catalog called \"$catalog\"")
     public void whenAManagerCreatesANewCatalog(String catalogName) {
@@ -93,6 +108,94 @@ public class CatalogSteps {
 
     @Then("the EG1 product exist in the EG category")
     public void thenTheEG1ProductExistInTheEGCategory() {
+        // PENDING
+    }
+
+    @Given("a vendor list without a JA vendor")
+    public void givenAVendorListWithoutAJAVendor() {
+        // PENDING
+    }
+
+    @When("I enter a new $vendorId ($vendorName) vendor")
+    public void whenIEnterANewJAJaneVendor(String vendorId, String vendorName) {
+        Vendor vendor = new Vendor(vendorId, vendorName);
+        vendorRepository.store(vendor);
+    }
+
+    @Then("the JA vendor exist in the vendor list")
+    public void thenTheJAVendorExistInTheVendorList() {
+        // PENDING
+    }
+
+    @Given("the EG1 product exist")
+    @Pending
+    public void givenTheEG1ProductExist() {
+        // PENDING
+    }
+
+    @Given("the JA vendor exist")
+    @Pending
+    public void givenTheJAVendorExist() {
+        // PENDING
+    }
+
+    @When("I enter a new EG1-JA offer the EG1 product (10,5,EUR), the JA vendor")
+    @Pending
+    public void whenIEnterANewEG1JAOfferTheEG1Product105EURTheJAVendor() {
+        // PENDING
+    }
+
+    @Then("the EG1-JA product exist in offer list with the EG1 product (10,5,EUR), the JA vendor")
+    @Pending
+    public void thenTheEG1JAProductExistInOfferListWithTheEG1Product105EURTheJAVendor() {
+        // PENDING
+    }
+
+    @Given("the CG1 product exist")
+    @Pending
+    public void givenTheCG1ProductExist() {
+        // PENDING
+    }
+
+    @Given("the JA vendor exist")
+    @Pending
+    public void givenTheJAVendorExist() {
+        // PENDING
+    }
+
+    @When("I enter a new CG1-JA offer with the CG1 product (15,10,EUR), the JA vendor")
+    @Pending
+    public void whenIEnterANewCG1JAOfferWithTheCG1Product1510EURTheJAVendor() {
+        // PENDING
+    }
+
+    @Then("the CG1-JA product exist in offer list with the CG1 product (15,10,EUR), the JA vendor")
+    @Pending
+    public void thenTheCG1JAProductExistInOfferListWithTheCG1Product1510EURTheJAVendor() {
+        // PENDING
+    }
+
+    @Given("the GA1 product exist")
+    @Pending
+    public void givenTheGA1ProductExist() {
+        // PENDING
+    }
+
+    @Given("the JA vendor exist")
+    @Pending
+    public void givenTheJAVendorExist() {
+        // PENDING
+    }
+
+    @When("I enter a new GA1-JA offer with the GA1 product (20,15,EUR), the JA vendor")
+    @Pending
+    public void whenIEnterANewGA1JAOfferWithTheGA1Product2015EURTheJAVendor() {
+        // PENDING
+    }
+
+    @Then("the GA1-JA product exist in offer list with the GA1 product (20,15,EUR), the JA vendor")
+    @Pending
+    public void thenTheGA1JAProductExistInOfferListWithTheGA1Product2015EURTheJAVendor() {
         // PENDING
     }
 
