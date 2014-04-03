@@ -10,21 +10,21 @@ import org.junit.Test;
 public class StockCheckRuleTest {
     StockCheckRule stockCheckRule = StockCheckRule.INSTANCE;
     @Test
-    public void testCheckStockAvailableSuccess() {
+    public void testOrderLineQuantityLowerThanStockAvailable() {
         Quantity orderLineQty = Quantity.valueOf(10);
         Quantity stockQty = Quantity.valueOf(15);
         assert(stockCheckRule.checkStockAvailable(orderLineQty,stockQty) == true);
     }
 
     @Test
-    public void testCheckStockCanBeEmpty() {
+    public void testOrderLineQuantityEqualsStockAvailable() {
         Quantity orderLineQty = Quantity.valueOf(10);
         Quantity stockQty = Quantity.valueOf(10);
         assert(stockCheckRule.checkStockAvailable(orderLineQty,stockQty) == true);
     }
 
     @Test
-    public void testCheckStockAvailableFail() {
+    public void testOrderLineQuantityGreaterThanStockAvailable() {
         Quantity orderLineQty = Quantity.valueOf(10);
         Quantity stockQty = Quantity.valueOf(9);
         assert(stockCheckRule.checkStockAvailable(orderLineQty,stockQty) == false);
