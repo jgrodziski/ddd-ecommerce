@@ -19,6 +19,7 @@ public class CatalogSteps {
     @When("a manager creates a new catalog called \"$catalog\"")
     public void whenAManagerCreatesANewCatalog(String catalogName) {
         catalog = new Catalog(catalogName);
+        catalogRepository.store(catalog);
     }
 
     @Then("the catalog \"Seine\" is available and online")
@@ -68,6 +69,8 @@ public class CatalogSteps {
     public void whenIEnterANewEGCategoryIntoTheGEFamily(String code, String label, String familyId, String universeId) {
         Family family = catalog.getUniverse(universeId).getFamily(familyId);
         family.add(new Category(code, label, family));
+        catalogRepository.store(catalog);
+
     }
 
     @Then("the $categoryId category exist in the $familyId family and $universeId universe")
@@ -75,7 +78,23 @@ public class CatalogSteps {
         assertNotNull(catalog.getUniverse(universeId).getFamily(familyId).getCategory(categoryId));
     }
 
+    @Given("the EG category without a EG1 product")
+    public void givenTheEGCategoryWithoutAEG1Product() {
+        // PENDING
+    }
 
+    @When("I enter a new $productId ($description, $brand, $asin, $weight, $dimension) product into the $universeId-$familyId-$categoryId category")
+    public void whenIEnterANewEG1ProductIntoTheEGCategory(String productId, String description, String brand, String asin, String weight, String dimension, String universeId, String familyId, String categoryId) {
+        Category category = catalog.getUniverse(universeId).getFamily(familyId).getCategory(categoryId);
+        Product product = new Product(new ProductId(productId), description, brand, asin, weight, dimension, category);
+        catalog.add(product);
+        catalogRepository.store(catalog);
+    }
+
+    @Then("the EG1 product exist in the EG category")
+    public void thenTheEG1ProductExistInTheEGCategory() {
+        // PENDING
+    }
 
 
 }
