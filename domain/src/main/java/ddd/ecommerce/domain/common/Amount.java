@@ -1,4 +1,4 @@
-package ddd.ecommerce.domain;
+package ddd.ecommerce.domain.common;
 
 import java.math.BigDecimal;
 import java.util.Currency;
@@ -9,10 +9,20 @@ import java.util.Currency;
 public class Amount {
     private BigDecimal value;
     private Currency currency;
+    public static final Amount ZERO_EUR = new Amount(BigDecimal.ZERO, Currency.getInstance("EUR"));
+    public static final Amount ZERO_USD = new Amount(BigDecimal.ZERO, Currency.getInstance("USD"));
 
     public Amount(BigDecimal value, Currency currency) {
         this.value = value;
         this.currency = currency;
+    }
+
+    public Amount(int i, String currency) {
+        this(new BigDecimal(i), Currency.getInstance(currency));
+    }
+
+    public Amount(String i, String currency) {
+        this(new BigDecimal(i), Currency.getInstance(currency));
     }
 
     public BigDecimal getValue() {
@@ -21,6 +31,11 @@ public class Amount {
 
     public Currency getCurrency() {
         return currency;
+    }
+
+    public Amount add(Amount otherAmount){
+        if (!this.getCurrency().equals(otherAmount.getCurrency())) throw new RuntimeException("Currency must be identical");
+        return new Amount(this.value.add(otherAmount.getValue()), getCurrency());
     }
 
     @Override

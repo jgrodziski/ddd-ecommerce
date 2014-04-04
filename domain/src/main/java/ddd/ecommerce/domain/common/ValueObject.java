@@ -1,4 +1,4 @@
-package ddd.ecommerce.domain;
+package ddd.ecommerce.domain.common;
 
 /**
  *
