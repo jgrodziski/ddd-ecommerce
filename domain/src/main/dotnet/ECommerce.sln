@@ -27,6 +27,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scenarios", "Scenarios", "{
 		..\..\test\resources\4_soumission_commande.story = ..\..\test\resources\4_soumission_commande.story
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECommerce.Tests", "Tests\ECommerce.Tests.csproj", "{5394776F-E6C2-4186-90F7-3CACEE4B3738}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,10 @@ Global
 		{28D8B647-AF54-4992-A89B-D57040427419}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{28D8B647-AF54-4992-A89B-D57040427419}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{28D8B647-AF54-4992-A89B-D57040427419}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5394776F-E6C2-4186-90F7-3CACEE4B3738}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5394776F-E6C2-4186-90F7-3CACEE4B3738}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5394776F-E6C2-4186-90F7-3CACEE4B3738}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5394776F-E6C2-4186-90F7-3CACEE4B3738}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,28 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 
 namespace ECommerce.Core
 {
-    public class CatalogRepository
+    public class CatalogRepository : ValueObjectRepository<Catalog>
     {
-        private readonly List<Catalog> catalogs = new List<Catalog>();
-
-        public bool Exist(Catalog catalog)
+        public Family GetFamily(string name)
         {
-            return catalogs.Any(item => item.Equals(catalog));
-        }
-
-        public void Add(Catalog catalog)
-        {
-            if (Exist(catalog))
-            {
-                throw new InvalidOperationException();
-            }
-
-            catalogs.Add(catalog);
+            return items.SelectMany(catalog => catalog.Universes)
+                .SelectMany(universe => universe.Families)
+                .FirstOrDefault(family => family.Name == name);
         }
     }
 }

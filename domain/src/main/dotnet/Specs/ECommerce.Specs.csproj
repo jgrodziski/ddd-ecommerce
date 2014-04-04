@@ -57,11 +57,6 @@
     </Compile>
     <Compile Include="CreateCatalogSteps.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Universe.feature.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Universe.feature</DependentUpon>
-    </Compile>
     <Compile Include="VendorFeatureSteps.cs" />
     <Compile Include="Vendors.feature.cs">
       <AutoGen>True</AutoGen>
@@ -77,10 +72,6 @@
       <LastGenOutput>Catalog.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
-    <None Include="Universe.feature">
-      <Generator>SpecFlowSingleFileGenerator</Generator>
-      <LastGenOutput>Universe.feature.cs</LastGenOutput>
-    </None>
     <None Include="Vendors.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>Vendors.feature.cs</LastGenOutput>

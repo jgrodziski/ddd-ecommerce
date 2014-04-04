@@ -1,7 +1,7 @@
 When a manager creates a new catalog called "Seine"
 Then the catalog "Seine" is available and online
 
-Given a catalog without a MI (Music Instruments) universe
+Given Catalog "Seine" without a MI (Music Instruments) universe
 When I enter a new MI universe
 Then the MI universe exist in the catalog
 

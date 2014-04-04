@@ -1,4 +1,4 @@
-Given the EG category without a EG1 product
+Given the EG category without a EG1 product (Name:EG1; Description:Electrics Gutars; BuyingPrice: 10)
 When I enter a new EG1 product into the EG category
 Then the EG1 product exist in the EG category
 

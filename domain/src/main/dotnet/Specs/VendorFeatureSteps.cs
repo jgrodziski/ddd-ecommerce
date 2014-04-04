@@ -7,7 +7,7 @@ namespace ECommerce.Specs
     [Binding]
     public class VendorFeatureSteps
     {
-        private readonly VendorRepository repository = new VendorRepository();
+        private readonly Repository<Vendor> repository = new Repository<Vendor>();
 
         [Given(@"a vendor list without a ""(.*)"" \(""(.*)""\) vendor")]
         public void GivenAVendorListWithoutAVendor(string code, string name)
