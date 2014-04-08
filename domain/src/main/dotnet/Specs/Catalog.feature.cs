@@ -32,7 +32,7 @@ namespace ECommerce.Specs
         public virtual void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Create Catalog", "Create catalog", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Create Catalog", "", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -66,19 +66,74 @@ namespace ECommerce.Specs
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Create Catalog")]
-        [NUnit.Framework.CategoryAttribute("CreateCatalog")]
         public virtual void CreateCatalog()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create Catalog", new string[] {
-                        "CreateCatalog"});
-#line 6
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Create Catalog", ((string[])(null)));
+#line 3
 this.ScenarioSetup(scenarioInfo);
-#line 7
+#line 4
  testRunner.Given("a CatalogList without catalog \"Seine\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line 8
+#line 5
  testRunner.When("a manager creates a new catalog called \"Seine\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
-#line 9
+#line 6
  testRunner.Then("the catalog \"Seine\" is available in catalog list", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 8
+ testRunner.Given("catalog \"Seine\" without a \"MI\" (\"Music Instruments\") universe", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 9
+ testRunner.When("I enter a new \"MI\" universe with the \"Music Instruments\" description into the cat" +
+                    "alog \"Seine\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 10
+ testRunner.Then("the \"MI\" universe with the \"Music Instruments\" description exist in the  \"Seine\" " +
+                    "catalog", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 12
+ testRunner.Given("the \"MI\" universe without a \"GE\" (\"Guitar & Equipment\") family", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 13
+ testRunner.When("I enter a new \"GE\" family with \"Guitar & Equipment\" description into the \"MI\" uni" +
+                    "verse", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 14
+ testRunner.Then("the \"GE\" family exist in the \"MI\" universe", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 16
+ testRunner.Given("the \"GE\" family without a \"EG\" (\"Electric Guitars\") category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 17
+ testRunner.When("I enter a new \"EG\" category with the \"Electric Guitars\" description into the \"GE\"" +
+                    " family", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 18
+ testRunner.Then("the \"EG\" category exist in the \"GE\" family with the \"Electric Guitars\" descriptio" +
+                    "n", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 20
+ testRunner.Given("the \"GE\" family without a \"CG\" (\"Classic Guitars\") category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 21
+ testRunner.When("I enter a new \"CG\" category with the \"Classic Guitars\" description into the \"GE\" " +
+                    "family", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 22
+ testRunner.Then("the \"CG\" category exist in the \"GE\" family with the \"Classic Guitars\" description" +
+                    "", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 24
+ testRunner.Given("the \"GE\" family without a \"GA\" (\"Guitar Amplifiers\") category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 25
+ testRunner.When("I enter a new \"GA\" category with the \"Guitar Amplifiers\" description into the \"GE" +
+                    "\" family", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 26
+ testRunner.Then("the \"GA\" category exist in the \"GE\" family with the \"Guitar Amplifiers\" descripti" +
+                    "on", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 28
+ testRunner.Given("the \"EG\" category without a \"EG1\" product", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 29
+ testRunner.When("I enter a new \"EG1\" product into the \"EG\" category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 30
+ testRunner.Then("the \"EG1\" product exist in the \"EG\" category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 32
+ testRunner.Given("the \"CG\" category without a \"CG1\" product", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 33
+ testRunner.When("I enter a new \"CG1\" product into the \"CG\" category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 34
+ testRunner.Then("the \"CG1\" product exist in the \"CG\" category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 36
+ testRunner.Given("the \"GA\" category without a \"GA1\" product", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 37
+ testRunner.When("I enter a new \"GA1\" product into the \"GA\" category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 38
+ testRunner.Then("the \"GA1\" product exist in the \"GA\" category", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             this.ScenarioCleanup();
         }

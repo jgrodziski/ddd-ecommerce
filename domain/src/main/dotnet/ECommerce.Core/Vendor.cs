@@ -1,15 +1,36 @@
-﻿namespace ECommerce.Core
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+
+namespace ECommerce.Core
 {
     public class Vendor
     {
+        List<Offer> offers;
+
         public Vendor(string code, string name)
         {
             Code = code;
             Name = name;
+            offers = new List<Offer>();
+            Offers = new ReadOnlyCollection<Offer>(offers);
         }
 
-        public string Name { get; set; }
-        public string Code { get; set; }
+        public string Name { get; private set; }
+
+        public string Code { get; private set; }
+
+        public ReadOnlyCollection<Offer> Offers { get; private set; }
+
+        public void AddOffer(Offer offer)
+        {
+            if (offer.SellPrice < offer.Product.BuyPrice)
+            {
+                throw new InvalidOperationException();
+            }
+
+            offers.Add(offer);
+        }
 
         protected bool Equals(Vendor other)
         {
