@@ -4,8 +4,8 @@ import ddd.ecommerce.domain.common.Amount;
 import ddd.ecommerce.domain.common.BooleanRule;
 
 /**
- * When <basket balance > a minimum amount>
- * Then delivery costs are 0
+ * When basket balance &gt; a minimum amount
+ * Then delivery costs are an amount 0 USD
  */
 public class FreeShippingCostRule implements BooleanRule {
     private Amount basketBalance;

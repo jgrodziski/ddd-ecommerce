@@ -1,8 +1,5 @@
 package ddd.ecommerce.domain.common;
 
-/**
- * Created by jeremiegrodziski on 02/04/14.
- */
 public class Quantity {
     private final Integer value;
     public static final Quantity ONE = new Quantity(1);
