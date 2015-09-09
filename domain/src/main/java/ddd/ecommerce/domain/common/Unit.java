@@ -6,6 +6,9 @@ public class Unit {
 	
     private Unit(String code, String symbol) {
 		super();
+		if(code == null && symbol == null){
+			throw new RuntimeException("code and symbol must not be null");
+		}
 		this.code = code;
 		this.symbol = symbol;
 	}
@@ -25,5 +28,13 @@ public class Unit {
 	}
 	public void setSymbol(String symbol) {
 		this.symbol = symbol;
+	}
+	
+	public boolean equals(Object obj){
+		if(obj != null && obj instanceof Unit){
+			Unit other = (Unit) obj;
+			return other.code.equalsIgnoreCase(this.code) && other.symbol.equals(this.symbol);
+		}
+		return false;
 	}
 }
