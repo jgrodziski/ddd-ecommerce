@@ -20,6 +20,10 @@ public class StockCheckRule implements BooleanRule {
         return orderLineQuantity.lte(stockQuantity);
     }
 
+    public Boolean evaluate() {
+        return checkStockAvailable();
+    }
+
     @Override
     public boolean isTrue() {
         return checkStockAvailable();

@@ -1,4 +1,4 @@
-package ddd.ecommerce.domain;
+package ddd.ecommerce.domain.catalog;
 
 import ddd.ecommerce.domain.catalog.Catalog;
 

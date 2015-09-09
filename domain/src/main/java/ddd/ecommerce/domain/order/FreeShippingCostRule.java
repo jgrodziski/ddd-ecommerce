@@ -1,4 +1,4 @@
-package ddd.ecommerce.domain.customer;
+package ddd.ecommerce.domain.order;
 
 import ddd.ecommerce.domain.common.Amount;
 import ddd.ecommerce.domain.common.BooleanRule;
@@ -14,6 +14,11 @@ public class FreeShippingCostRule implements BooleanRule {
     public FreeShippingCostRule(Amount basketBalance, Amount minimumBalanceForFreeShippingCost) {
         this.basketBalance = basketBalance;
         this.minimumBalanceForFreeShippingCost = minimumBalanceForFreeShippingCost;
+    }
+
+    @Override
+    public Boolean evaluate() {
+        return isShippingCostFree();
     }
 
     public boolean isShippingCostFree(){

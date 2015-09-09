@@ -1,10 +1,9 @@
-package ddd.ecommerce.domain;
+package ddd.ecommerce.domain.marketplace;
 
-
-public class ProductId {
+public class VendorId {
     private String value;
 
-    public ProductId(String value) {
+    public VendorId(String value) {
         this.value = value;
     }
 
@@ -17,21 +16,21 @@ public class ProductId {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        ProductId productId = (ProductId) o;
+        VendorId vendorId = (VendorId) o;
 
-        if (!value.equals(productId.value)) return false;
+        if (value != null ? !value.equals(vendorId.value) : vendorId.value != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return value != null ? value.hashCode() : 0;
     }
 
     @Override
     public String toString() {
-        return "ProductId{" +
+        return "VendorId{" +
                 "value='" + value + '\'' +
                 '}';
     }

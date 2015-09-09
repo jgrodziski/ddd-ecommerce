@@ -1,9 +1,10 @@
 package ddd.ecommerce.domain.catalog;
 
-public class VendorId {
+
+public class ProductId {
     private String value;
 
-    public VendorId(String value) {
+    public ProductId(String value) {
         this.value = value;
     }
 
@@ -16,21 +17,21 @@ public class VendorId {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        VendorId vendorId = (VendorId) o;
+        ProductId productId = (ProductId) o;
 
-        if (value != null ? !value.equals(vendorId.value) : vendorId.value != null) return false;
+        if (!value.equals(productId.value)) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        return value != null ? value.hashCode() : 0;
+        return value.hashCode();
     }
 
     @Override
     public String toString() {
-        return "VendorId{" +
+        return "ProductId{" +
                 "value='" + value + '\'' +
                 '}';
     }
