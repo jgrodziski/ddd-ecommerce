@@ -1,20 +1,21 @@
 package ddd.ecommerce.domain.common;
 
 public class Quantity {
-    private final Integer value;
+    private final Double value;
     private final Unit unit;
 
-    private Quantity(Integer value, Unit unit) {
+    private Quantity(Double value, Unit unit) {
         if (value < 0) throw new RuntimeException("A quantity is always positive");
         if (unit == null) throw new RuntimeException("The unit cannot be null");
         this.value = value;
         this.unit = unit;
     }
-    public static Quantity valueOf(Integer value, Unit unit){
+    
+    public static Quantity valueOf(Double value, Unit unit){
         return new Quantity(value, unit);
     }
 
-    public Integer getValue() {
+    public Double getValue() {
         return value;
     }
 
