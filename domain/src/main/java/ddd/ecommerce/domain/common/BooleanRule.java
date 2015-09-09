@@ -1,5 +1,5 @@
 package ddd.ecommerce.domain.common;
 
-public interface BooleanRule {
+public interface BooleanRule extends Rule<Boolean>{
     public boolean isTrue();
 }

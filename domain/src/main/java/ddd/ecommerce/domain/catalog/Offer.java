@@ -2,6 +2,7 @@ package ddd.ecommerce.domain.catalog;
 
 import ddd.ecommerce.domain.common.Amount;
 import ddd.ecommerce.domain.common.Quantity;
+import ddd.ecommerce.domain.marketplace.VendorId;
 
 /**
  * Created by jeremiegrodziski on 02/04/14.

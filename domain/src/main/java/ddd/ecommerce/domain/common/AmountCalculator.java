@@ -1,7 +1,8 @@
 package ddd.ecommerce.domain.common;
 
 
-public interface AmountCalculator {
+public interface AmountCalculator extends Rule<Amount> {
 
     public Amount calculate();
+
 }

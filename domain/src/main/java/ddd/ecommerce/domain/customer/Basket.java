@@ -2,6 +2,7 @@ package ddd.ecommerce.domain.customer;
 
 import ddd.ecommerce.domain.common.Amount;
 import ddd.ecommerce.domain.catalog.OfferRepository;
+import ddd.ecommerce.domain.order.ShippingCostCalculator;
 
 import java.util.ArrayList;
 import java.util.List;
