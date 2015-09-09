@@ -17,6 +17,7 @@ public class EcommerceStories extends Stories {
 
         steps.add(new CatalogSteps());
         steps.add(new CustomerSteps());
+        steps.add(new OrderSteps());
 
         return steps;
     }

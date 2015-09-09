@@ -12,6 +12,11 @@ public class Amount {
     public static final Amount ZERO_EUR = new Amount(BigDecimal.ZERO, Currency.getInstance("EUR"));
     public static final Amount ZERO_USD = new Amount(BigDecimal.ZERO, Currency.getInstance("USD"));
 
+    public Amount(BigDecimal value) {
+        this.value = value;
+        this.currency = Currency.getInstance("EUR");
+    }
+
     public Amount(BigDecimal value, Currency currency) {
         this.value = value;
         this.currency = currency;
@@ -33,9 +38,13 @@ public class Amount {
         return currency;
     }
 
+    public static final Amount add(Amount a, Amount b){
+        if (!a.getCurrency().equals(b.getCurrency())) throw new RuntimeException("Currency must be identical");
+        return new Amount(a.getValue().add(b.getValue()), a.getCurrency());
+    }
+
     public Amount add(Amount otherAmount){
-        if (!this.getCurrency().equals(otherAmount.getCurrency())) throw new RuntimeException("Currency must be identical");
-        return new Amount(this.value.add(otherAmount.getValue()), getCurrency());
+        return add(this, otherAmount);
     }
 
     @Override

@@ -1,6 +1,4 @@
-package ddd.ecommerce.domain;
-
-import ddd.ecommerce.domain.catalog.VendorId;
+package ddd.ecommerce.domain.marketplace;
 
 public interface VendorRepository {
     public void store(Vendor vendor);

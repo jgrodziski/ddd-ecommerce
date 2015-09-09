@@ -1,10 +1,5 @@
-package ddd.ecommerce.domain;
+package ddd.ecommerce.domain.catalog;
 
-import ddd.ecommerce.domain.catalog.Category;
-
-/**
- * Created by jeremiegrodziski on 03/04/14.
- */
 public class Product {
     private ProductId productId;
     private String description;

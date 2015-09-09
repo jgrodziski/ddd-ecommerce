@@ -7,9 +7,6 @@ import ddd.ecommerce.domain.order.OrderRepository;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by Training on 4/3/2014.
- */
 public class OrderRepositoryMock implements OrderRepository {
     private final static Map<OrderId, Order> orders = new HashMap<OrderId, Order>(10);
 
@@ -19,7 +16,7 @@ public class OrderRepositoryMock implements OrderRepository {
     }
 
     @Override
-    public Order findOrderById(OrderId orderId) {
+    public Order get(OrderId orderId) {
         return orders.get(orderId);
     }
 }

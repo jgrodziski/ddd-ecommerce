@@ -1,8 +1,5 @@
 package ddd.ecommerce.domain.catalog;
 
-import ddd.ecommerce.domain.Product;
-import ddd.ecommerce.domain.ProductId;
-
 import java.util.HashMap;
 import java.util.Map;
 
