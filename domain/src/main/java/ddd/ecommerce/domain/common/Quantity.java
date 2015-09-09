@@ -1,7 +1,5 @@
 package ddd.ecommerce.domain.common;
 
-import java.util.concurrent.Callable;
-
 public class Quantity {
     private final Integer value;
     private final Unit unit;
@@ -25,69 +23,43 @@ public class Quantity {
 	}
     
 	public boolean lt(final Quantity quantity){
-    	return this.checkAndExecute(new Callable<Boolean>() {
-    		public Boolean call() throws Exception{
-    			return Quantity.this.getValue() < quantity.getValue();
-    		}
-		}, quantity);
+		checkUnitCompatibility(quantity);
+    	return Quantity.this.getValue() < quantity.getValue();
     }
 
     public boolean lte(final Quantity quantity){
-        return this.checkAndExecute(new Callable<Boolean>() {
-    		public Boolean call() throws Exception{
-    			return Quantity.this.getValue() <= quantity.getValue();
-    		}
-		}, quantity);
+    	checkUnitCompatibility(quantity);
+    	return Quantity.this.getValue() <= quantity.getValue();
     }
 
     public boolean gt(final Quantity quantity){
-        return this.checkAndExecute(new Callable<Boolean>() {
-    		public Boolean call() throws Exception{
-    			return Quantity.this.getValue() > quantity.getValue();
-    		}
-		}, quantity);
+    	checkUnitCompatibility(quantity);
+    	return Quantity.this.getValue() > quantity.getValue();
     }
 
     public boolean gte(final Quantity quantity){
-        return this.checkAndExecute(new Callable<Boolean>() {
-    		public Boolean call() throws Exception{
-    			return Quantity.this.getValue() >= quantity.getValue();
-    		}
-		}, quantity);
+    	checkUnitCompatibility(quantity);
+    	return Quantity.this.getValue() >= quantity.getValue();
     }
 
     public boolean eq(final Quantity quantity){
-    	return this.checkAndExecute(new Callable<Boolean>() {
-    		public Boolean call() throws Exception{
-    			return Quantity.this.getValue() == quantity.getValue();
-    		}
-		}, quantity);
+    	checkUnitCompatibility(quantity);
+    	return Quantity.this.getValue() == quantity.getValue();
     }
 
     public Quantity minus(final Quantity quantityToRemove) {
-    	return this.checkAndExecute(new Callable<Quantity>() {
-    		public Quantity call() throws Exception{
-    			return new Quantity(Quantity.this.value-quantityToRemove.value, Quantity.this.unit);
-    		}
-		}, quantityToRemove);
+    	checkUnitCompatibility(quantityToRemove);
+    	return new Quantity(Quantity.this.value-quantityToRemove.value, Quantity.this.unit);
     }
     
     public Quantity plus(final Quantity quantityToAdd) {
-    	return this.checkAndExecute(new Callable<Quantity>() {
-    		public Quantity call() throws Exception{
-    			return new Quantity(Quantity.this.value+quantityToAdd.value, Quantity.this.unit);
-    		}
-		}, quantityToAdd);
+    	checkUnitCompatibility(quantityToAdd);
+    	return new Quantity(Quantity.this.value+quantityToAdd.value, Quantity.this.unit);
     }
     
-    private <T> T checkAndExecute(Callable<T> callable, Quantity otherQuantity){
-    	if(this.unit.equals(otherQuantity)){
-    		try {
-				return callable.call();
-			} catch (Exception ex) {
-				throw new RuntimeException(ex);
-			}
+    private void checkUnitCompatibility(Quantity otherQuantity){
+    	if(!this.unit.equals(otherQuantity.unit)){    		
+    		throw new RuntimeException("The unit is not compatible");
     	}
-    	throw new RuntimeException("The unit is not compatible");
     }
 }
