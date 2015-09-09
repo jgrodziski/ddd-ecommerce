@@ -17,6 +17,10 @@ public class CartEntryPrice {
         return new CartEntryPrice(amount.add(other.getAmount()), discountAmount.add(other.getDiscountAmount()));
     }
 
+    public Amount getAmountWithDiscouts() {
+        return amount.subtract(discountAmount);
+    }
+
     public Amount getDiscountAmount() {
         return discountAmount;
     }

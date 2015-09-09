@@ -47,6 +47,10 @@ public class Amount {
         return add(this, otherAmount);
     }
 
+    public Amount subtract(Amount otherAmount){
+        return add(this, new Amount(otherAmount.getValue().negate(), otherAmount.getCurrency()));
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
